@@ -83,5 +83,24 @@
         <p class="selected"></p>
         </div>
     </div>   
+<script>
+    let display = document.querySelector(".display");
+    let previous = document.querySelector (".left");
+    let next = document.querySelector (".right")
+    let days = document.querySelector (".days")
+    let selected = document.querySelector (".selected");
+
+    let dateToday = new Date();
+    let dateToday = new Date()
+    console.log(dateToday);
+
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let formattedDate = date.toLocaleString("en-US", {
+        month: "long",
+        year: "numeric",
+    }); 
+    display.innerHTML = `${formattedDate}`;
+</script>
 </body>
 </html>
