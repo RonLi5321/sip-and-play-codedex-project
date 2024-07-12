@@ -49,14 +49,43 @@
         color: var(--accent);
 
     }
+    .days, .week {
+        display: grid; 
+        grid-template-columns: repeat(7, 1fr);
+        margin: auto;
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+    .week div,
+    .days div {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 3rem;
+     width: 3em;
+     border-radius: 100%;
+    }
+    .days div:hover {
+        background: var(--accent-2);
+        color: rgb(25, 25, 201);
+        cursor: pointer;
+    }
+    .week div {
+        opacity: 0.5;
+    }
+    .current-date{
+        background-color: var(--accent);
+        color: var(--white);
+    }
+    .display-selected {
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        text-align: center;
+    }
+
     </style>
 </head>
-<body>
-    <h1>Events</h1>
-    <a href="index.html">Back to Homepage</a>
-    <a href="about.html">About Me</a></body>
-    <a href="events.html">Events</a>
-    <a href="menu.html">Menu</a>   
+<body> 
     <div class="container">
         <div class="calendar">
             <header>
