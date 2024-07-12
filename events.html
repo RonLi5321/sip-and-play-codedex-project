@@ -108,8 +108,17 @@
     }); 
     display.innerHTML = `${formattedDate}`;
 
-    for (let i = 1; i <= numberOfDays; i++){
+    for (let x = 1; x <= numberOfDays; x++){
+        const div = document.createElement
         let div=document.createElement("div");
+        div.innerHTML += "";
+
+        days.appendChild(div);
+    }
+    for (let i =1; i <= numberOfDays; i++) {
+        let div = document.createElement("div");
+        
+
         let currentDate = new Date (year, month, i);
 
         div.dataset.date = currentDate.toDateString();
@@ -117,13 +126,47 @@
         div.innerHTML += i;
         days.appendChild(div);
         if(
-           currentDate.getFullYear() ==== new Date().getFullYear() &&
-           currentDate.getMonth() ==== new Date().getMonth() &&
-           currentDate.getDate() === new Date().getDate() 
+           currentDate.getFullYear() === new Date().getFullYear() &&
+           currentDate.getMonth() === new Date().getMonth() &&
+           currentDate.getDate() === new Date().getDate()
         ) {
             div.classList.add("current=date");
+            }
         }
-    }
+        displayCalendar(); 
+
+        previous.addEventListener("click", () => {
+            days.innerHTML = "";
+            selected.innerHTML = "";
+
+            if (month<0){
+                month = 11;
+                year = year - 1;
+        }
+
+        month = month - 1;
+
+        date.setMonth(month);
+
+        displayCalendar();
+        displaySelected();
+    });
+
+    next.addEventListener("click", () => {
+        days.innerHTML = "";
+        selected.innerHTML = "";
+
+        if (month > 11) {
+            month = 0;
+            year = year + 1;
+        }
+
+        month = month + 1;
+        date.setMonth(month);
+
+        displayCalendar();
+        displaySelected()
+    });
     function displaySelected() {
         const dayElements = document.querySelectorAll(".days div");
         dayElements.forEach((day) => {
