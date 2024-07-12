@@ -124,6 +124,16 @@
             div.classList.add("current=date");
         }
     }
+    function displaySelected() {
+        const dayElements = document.querySelectorAll(".days div");
+        dayElements.forEach((day) => {
+            day.addEventListener("click", (e) => {
+                const selectedDate = e.target.dataset.date;
+                selected.innerHTML = `Selected Date : ${selectedDate}`;
+            });
+        });        
+    }
+    displaySelected();
 </script>
 </body>
 </html>
