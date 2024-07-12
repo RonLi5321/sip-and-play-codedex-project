@@ -16,6 +16,20 @@
       background-color: var(--main);
       margin: 0;
     }
+    .button-container-calendar{
+        position: relative;
+        margin-bottom: 1em;
+        overflow: hidden;
+        clear: both; 
+    }
+    .button-container-calendar button{
+        cursor: pointer;
+        background: green;
+        color: #fff;
+        border: 1px solid green;
+        border-radius: 4px;
+        padding: 5px 10px;
+    }
     .container-calendar{
         background: var(--white);
         padding: 15px;
@@ -32,6 +46,34 @@
         background-color: #f2f2f2;
         margin: 0;
         padding: 10px 0;
+    }
+    .date-picker.selected{
+        background-color: #f2f2f2;
+        font-weight: bold;
+        outline: 1px dashed #00BCD4;
+    }
+    .date-picker.selected span{
+        border-bottom: 2px solid currentColor;
+    }
+    .date-picker:hover{
+        background-color: green;
+        color: white;
+        cursor: pointer;
+    }
+    .date-picker:nth-child(1){
+        color: red;
+    }
+    .date-picker:nth-child(6){
+        color: green;
+    }
+    .delete-event{
+        background: rgb(237, 19, 19); 
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-left: 10px;
+        align-items: right;
     }
     .event-marker {
         position: relative;
@@ -63,6 +105,30 @@
         transition: all 0.3s;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         z-index: 1;
+    }
+    .footer-container-calendar{
+        margin-top: 1em;
+        border-top: 1px solid #dadada;
+        padding: 10px0;
+    }
+    .footer-container-calendar select{
+        cursor: pointer;
+        background: #ffffff;
+        color: #585858;
+        border: 1px solid #bfc5c5;
+        border-radius: 3px;
+        padding: 5px 1em;
+    }
+    .table-calendar {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .table-calendar td, 
+    .table-calendar th {
+        padding: 5px;
+        border: 1px solid #e2e2e2;
+        text-align: center;
+        vertical-align: top;
     }
     .topnav {
         background-color: var(--main);
@@ -106,6 +172,35 @@
         margin: 10px 0;
         padding: 5px;
         width: 80%;
+    }
+    #monthAndYear{
+        text-align: center;
+        margin-top: 0;
+    }
+    #next{
+        float: right; 
+    }
+    #previous{
+        float: left;
+    }
+    #reminder-section{
+        padding: 10px;
+        background: #f5f5f5;
+        margin: 20px 0;
+        border: 1px solid #ccc;
+    }
+    #reminder-section h3{
+        color: green;
+        font-size: 18px;
+        margin: 0;
+    }
+    #reminderList{
+        list-style: none;
+        padding: 0;
+    }
+    #reminderList li{
+        list-style: 5px 0;
+        font-size: 16px; 
     }
 
 </style>
@@ -184,6 +279,54 @@
                     </div>
                 </div>
             </div>
-            <script src="./script.js"></script>
+            <script>
+                let events = [];
+
+                let eventDateInput =
+                    document.getElementById("eventDate");
+                let eventTitleInput =
+                    document.getElementById("eventTitle");
+                let eventDescriptionInput =
+                    document.getElementById("eventDescription");
+                let reminderList = 
+                    document.getElementById("reminderList");
+                    
+                let eventIdCounter =1;
+
+                function addEvent(){
+                    let date = eventDateInput.value;
+                    let title = eventTitleInput.value;
+                    let description = eventDescriptionInput.value;
+                  
+                    if (date && title){
+                        let eventId = eventIdCounter++;
+                        
+                        events.push(
+                            {
+                                id: eventId, date: date, 
+                                title: title, 
+                                description: description
+                            }
+                        );
+                        showCalendar(currentMonth, currentYear);
+                        eventDateInput.value ="";
+                        eventTitleInput.value ="";
+                        eventDescriptionInput.value ="";
+                        displayReminders();
+                    }
+                }
+                function deleteEvent(eventId){
+                    let eventIndex =
+                        events.findIndex((event) =>
+                            event.id === eventId);
+
+                    if (eventIndex !== -1) {
+                        event.splice(eventIndex, 1);
+                        showCalendar(currentMonmth, currentYear);
+                        displayReminders();
+                    }        
+                }
+                
+            </script>
     </body>
 </html>
