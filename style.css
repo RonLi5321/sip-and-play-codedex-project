@@ -43,6 +43,27 @@ header .current-date{
     font-size: 1.45 rem;
     font-weight: 500;
 }
+.menuNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink; 
+}
+
+ .menuNav li {
+            list-style: none;
+            margin: 0px 10px;
+            float: right;
+            padding-bottom: 20px;
+        }
+
+.menuHead {
+    background-color: pink;
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    padding: 5px;
+}
 .calendar{
     padding: 20px;
 }
